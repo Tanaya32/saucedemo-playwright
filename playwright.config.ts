@@ -31,12 +31,12 @@ export default defineConfig({
     screenshot:'only-on-failure',
   
      /* Run browser in visible mode */
-  headless: false,
+  headless: !!process.env.CI,
 
   /* Slow down each Playwright action */
   launchOptions: {
-    slowMo: 500, // Try 500ms or 1000ms
-  },
+  slowMo: process.env.CI ? 0 : 500,
+},
 
   },
 
